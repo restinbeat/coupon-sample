@@ -1,0 +1,25 @@
+services:
+  controller:
+    build: ./controller
+    platform: linux/arm64
+    container_name: ngrinder-controller
+    ports:
+      - "8099:80"
+      - "16001:16001"
+    networks:
+      - ngrinder-net
+
+  agent:
+    image: ngrinder/agent:latest
+    platform: linux/amd64
+    depends_on:
+      - controller
+    environment:
+      - TZ=Asia/Seoul
+      - NGRINDER_CONTROLLER=controller
+    networks:
+      - ngrinder-net
+
+networks:
+  ngrinder-net:
+    driver: bridge
