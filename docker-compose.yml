@@ -1,12 +1,13 @@
-version: '2'
 services:
   zookeeper:
     image: wurstmeister/zookeeper
+    platform: linux/amd64
     container_name: zookeeper
     ports:
       - "2181:2181"
   kafka:
-    image: wurstmeister/kafka:2.12-2.5.0
+    image: wurstmeister/kafka:latest
+    platform: linux/amd64
     container_name: kafka
     ports:
       - "9092:9092"
