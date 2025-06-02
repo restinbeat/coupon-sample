@@ -16,3 +16,17 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  mysql:
+    image: mysql:latest
+    platform: linux/amd64
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
