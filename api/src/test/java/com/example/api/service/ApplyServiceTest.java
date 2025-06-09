@@ -48,6 +48,9 @@ class ApplyServiceTest {
 
         latch.await();
 
+        // 데이터가 실시간 전송이 아니라서 - sleep으로 지연 처리해둠
+        // test case 시작 - producer는 전송받았지만 - consumer에서는 데이터 수신 - test case 완료 - consumer 데이터 처리 중
+        // 아직 consumer 입장에서는 쿠폰 생성이 완료되지 않아서 test failed.
         Thread.sleep(10000);
 
         long count = couponRepository.count();
